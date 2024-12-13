@@ -2,12 +2,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define O_APPEND 02000
-#define O_CREAT 0100
-#define O_TRUNC 01000
-#define O_RDONLY 00
-#define O_WRONLY 01
-#define O_RDWR 02
+#define O_APPEND 02000//以追加模式打开文件，即打开文件后，文件描述符的偏移量指向文件的末尾，若不含此标志，则指向文件的开头；如果该标志单独出现默认可读
+#define O_CREAT 0100//如果传入的文件路径不存在，就创建这个文件，但如果这个文件的父目录不存在，就创建失败；如果文件已存在就正常打开
+#define O_TRUNC 01000// 如果传入的文件路径是存在的文件，并且同时还带有可写（O_WRONLY和O_RDWR）的标志，就清空这个文件
+#define O_RDONLY 00//read only
+#define O_WRONLY 01//write only 
+#define O_RDWR 02//read and write
 
 #define SEEK_SET 0
 #define SEEK_CUR 1
@@ -15,9 +15,9 @@
 
 typedef struct node {
   enum { FNODE, DNODE } type;
-  struct node **dirents; // if DTYPE
+  struct node **dirents; // if DTYPE child dir
   void *content;
-  int nrde;
+  int nrde;//num of dirents
   char *name;
   int size;
 } node;
