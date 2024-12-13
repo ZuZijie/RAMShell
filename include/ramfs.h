@@ -43,4 +43,4 @@ int rrmdir(const char *pathname);
 int runlink(const char *pathname);
 void init_ramfs();
 void close_ramfs();
-node *find(const char *pathname);
+node *find(const char *pathname,node *current_dir);
