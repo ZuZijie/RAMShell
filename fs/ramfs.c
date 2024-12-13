@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include "stdio.h"
 node *root = NULL;
 
 #define NRFD 4096
@@ -43,7 +44,39 @@ node *find(const char *pathname, node *current_dir) {
 }
 
 int ropen(const char *pathname, int flags) {
-
+    node *pt_node=find(pathname,root);
+    if(pt_node==NULL)
+    {
+        return -1;
+    }
+    else
+    {
+        if(pt_node->type==DNODE)return -1;
+        else
+        {
+            int lastposi=0;
+            for(int i=strlen(pathname);i>=0;i--)
+            {
+                if(pathname[i]=='/'&&pathname[i-1]!='/')
+                {
+                    lastposi=i;
+                    break;
+                }//寻找对应的父目录
+            }
+            char *father_dir;
+            strncpy(father_dir,lastposi,pathname);
+            node *pt_father_node=find(father_dir,root);
+            for(int i=0;i<pt_father_node->nrde;i++)
+            {
+                if(strcmp(pt_father_node->dirents[i],pt_node->name)==0)
+                {
+                    strcpy(pt_father_node->dirents[i],"/0");
+                    pt_father_node->nrde--; 
+                    return 0;
+                }
+            }
+        } 
+    }
 }
 
 int rclose(int fd) {
