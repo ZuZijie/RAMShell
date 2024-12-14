@@ -25,7 +25,7 @@ node *find(const char *pathname, node *current_dir) {
         int found = 0;
 
         for (int i = 0; i < current_dir->nrde; i++) {
-            if (strcmp(current_dir->dirents[i], token) == 0) {
+            if (strcmp(current_dir->dirents[i]->name, token) == 0) {
                 found = 1;
                 if (strtok(NULL, delim) == NULL) {
                     return current_dir;  
@@ -68,9 +68,9 @@ int ropen(const char *pathname, int flags) {
             node *pt_father_node=find(father_dir,root);
             for(int i=0;i<pt_father_node->nrde;i++)
             {
-                if(strcmp(pt_father_node->dirents[i],pt_node->name)==0)
+                if(strcmp(pt_father_node->dirents[i]->name,pt_node->name)==0)
                 {
-                    strcpy(pt_father_node->dirents[i],"/0");
+                    strcpy(pt_father_node->dirents[i],NULL);
                     pt_father_node->nrde--; 
                     return 0;
                 }
@@ -111,11 +111,27 @@ void init_ramfs() {
     root=malloc(sizeof(node));
     root->content=NULL;
     root->size=0;
-    strcpy(root->name,"root");
+    root->name="root";
     root->dirents=NULL;
     root->nrde=0;
 }
 
 void close_ramfs() {
 
+}
+int main()
+{
+    char pathname[100]="/home/zoinve/test.c";
+    init_ramfs();
+    root->nrde=3;
+    node *home;
+    root->dirents[0]->name="home";
+    home->nrde=1;
+    node *zoinve;
+    node *n3;
+    strcpy(n3->name,"test.c");
+    n3->type=DNODE;
+    zoinve->dirents[0]=n3;
+    printf("%p",find("/home/zoinve/test.c",root));
+    return 0;
 }
