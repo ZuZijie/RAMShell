@@ -109,10 +109,11 @@ int runlink(const char *pathname) {
 
 void init_ramfs() {
     root=malloc(sizeof(node));
-    root->content=NULL;
+    //root->content=NULL;
     root->size=0;
     root->name="root";
-    root->dirents=NULL;
+    //root->dirents=NULL;
+    root->dirents=malloc(sizeof(node *));
     root->nrde=0;
 }
 
@@ -125,11 +126,13 @@ int main()
     init_ramfs();
     root->nrde=3;
     node *home;
+    root->dirents[0]=malloc(sizeof(node *));
     root->dirents[0]->name="home";
-    home->nrde=1;
+    root->dirents[0]->nrde=1;
     node *zoinve;
     node *n3;
-    strcpy(n3->name,"test.c");
+    root->dirents[0]->dirents[0]=malloc(sizeof(node *));
+    strcpy(root->dirents[0]->dirents[0]->name,"test.c");
     n3->type=DNODE;
     zoinve->dirents[0]=n3;
     printf("%p",find("/home/zoinve/test.c",root));

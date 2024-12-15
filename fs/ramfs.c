@@ -11,7 +11,7 @@ FD fdesc[NRFD];
 
 node *find(const char *pathname, node *current_dir) {
     char *path_copy=malloc((strlen(pathname)+1)*sizeof(char));
-    strcpy(path_copy, pathname);
+    strcpy(path_copy, pathname);//复制新的名字以供修改
 
     const char *delim = "/";  
     char *token = strtok(path_copy, delim); 
@@ -20,17 +20,17 @@ node *find(const char *pathname, node *current_dir) {
         if (strlen(token) == 0) {
             token = strtok(NULL, delim);  
             continue;  
-        }
+        }//获取长度不等于0的字符串
 
         int found = 0;
 
         for (int i = 0; i < current_dir->nrde; i++) {
-            if (strcmp(current_dir->dirents[i], token) == 0) {
+            if (strcmp(current_dir->dirents[i]->name, token) == 0) {
                 found = 1;
                 if (strtok(NULL, delim) == NULL) {
                     return current_dir;  
                 }
-                current_dir = current_dir->dirents[i];
+                current_dir = current_dir->dirents[i];//更新当前位置
                 break;
             }
         }
@@ -64,7 +64,7 @@ int ropen(const char *pathname, int flags) {
                 }//寻找对应的父目录
             }
             char *father_dir;
-            strncpy(father_dir,lastposi,pathname);
+            strncpy(father_dir,lastposi,*pathname);
             node *pt_father_node=find(father_dir,root);
             for(int i=0;i<pt_father_node->nrde;i++)
             {
