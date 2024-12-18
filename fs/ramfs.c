@@ -8,6 +8,21 @@ node *root = NULL;
 
 #define NRFD 4096
 FD fdesc[NRFD];
+node *findFatherNode(const char *pathname)
+{
+    int lastposi;
+    for(int i=strlen(pathname)-1;i>=0;i--)
+    {
+        if(pathname[i]=='/'&&pathname[i-1]!='/')
+        {
+            lastposi=i;
+            break;
+        }
+    }
+    char *fatherNodePathName;
+    strncpy(fatherNodePathName,lastposi,pathname);
+    return find(fatherNodePathName,root);
+}
 
 node *find(const char *pathname, node *current_dir) {
     char *path_copy=malloc((strlen(pathname)+1)*sizeof(char));
@@ -47,35 +62,15 @@ int ropen(const char *pathname, int flags) {
     node *pt_node=find(pathname,root);
     if(pt_node==NULL)
     {
-        return -1;
+        if(flags>=64&&flags<=67)
+        {
+            rmkdir(pathname);
+        }
+        else return -1;
     }
     else
     {
-        if(pt_node->type==DNODE)return -1;
-        else
-        {
-            int lastposi=0;
-            for(int i=strlen(pathname);i>=0;i--)
-            {
-                if(pathname[i]=='/'&&pathname[i-1]!='/')
-                {
-                    lastposi=i;
-                    break;
-                }//寻找对应的父目录
-            }
-            char *father_dir;
-            strncpy(father_dir,lastposi,*pathname);
-            node *pt_father_node=find(father_dir,root);
-            for(int i=0;i<pt_father_node->nrde;i++)
-            {
-                if(strcmp(pt_father_node->dirents[i],pt_node->name)==0)
-                {
-                    strcpy(pt_father_node->dirents[i],"/0");
-                    pt_father_node->nrde--; 
-                    return 0;
-                }
-            }
-        } 
+        for(int i=0;i<NRFD;i++){}
     }
 }
 
@@ -96,7 +91,36 @@ off_t rseek(int fd, off_t offset, int whence) {
 }
 
 int rmkdir(const char *pathname) {//make new directory
-
+    if(find(pathname,root)!=NULL)
+    {
+        return -1;
+    }
+    else
+    {
+        node *pt_fatherNode=findFatherNode(*pathname);
+        if(pt_fatherNode==NULL)return -1;
+        if(pt_fatherNode->type==DNODE)
+        {
+            return -1;
+        }
+        int lastposi;
+        for(int i=strlen(pathname)-1;i>=0;i--)
+        {
+            if(pathname[i]!='/'&&pathname[i-1]=='/')
+            {
+                lastposi=i;
+                break;
+            }
+        }
+        char *newDirName=malloc(100*sizeof(char));
+        for(int i=lastposi;i<strlen(pathname);i++)
+        newDirName[i-lastposi]=pathname[i];
+        node *newDir;
+        strcpy(newDir->name,newDirName);
+        pt_fatherNode->dirents[pt_fatherNode->nrde]=newDir;
+        pt_fatherNode->nrde++;
+        return 0;
+    }
 }
 
 int rrmdir(const char *pathname) {//remove directory
@@ -104,7 +128,28 @@ int rrmdir(const char *pathname) {//remove directory
 }
 
 int runlink(const char *pathname) {
-
+    node *pt_node=find(pathname,root);
+    if(pt_node==NULL)
+    {
+        return -1;
+    }
+    else
+    {
+        if(pt_node->type==DNODE)return -1;
+        else
+        {
+            node *pt_fatherNode=findFatherNode(pathname);
+            for(int i=0;i<pt_fatherNode->nrde;i++)
+            {
+                if(strcmp(pt_fatherNode->dirents[i],pt_node->name)==0)
+                {
+                    strcpy(pt_fatherNode->dirents[i],"/0");
+                    pt_fatherNode->nrde--; 
+                    return 0;
+                }
+            }
+        } 
+    }
 }
 
 void init_ramfs() {
