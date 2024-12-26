@@ -103,6 +103,7 @@ int ropen(const char *pathname, int flags) {
             if(i==NRFD-1&&fdesc[i].used==1)return -1;
         }
     }
+    return  0;
 }
 
 int rclose(int fd) {
