@@ -21,7 +21,7 @@ node *findFatherNode(const char *pathname)
     }
     char *fatherNodePathName;
     fatherNodePathName=(char *)malloc(strlen(pathname)+1);//分配空间
-    strncpy(fatherNodePathName,lastposi+1,pathname);
+    strncpy(fatherNodePathName,pathname,lastposi+1);
     return find(fatherNodePathName,root);
 }
 
