@@ -13,7 +13,7 @@ node *findFatherNode(const char *pathname)
     int lastposi=0;
     for(int i=strlen(pathname)-1;i>=0;i--)
     {
-        if(pathname[i]=='/'&&pathname[i-1]!='/')
+        if(pathname[i]=='/' && i>0 && pathname[i-1]!='/')
         {
             lastposi=i;
             break;
@@ -21,7 +21,7 @@ node *findFatherNode(const char *pathname)
     }
     char *fatherNodePathName;
     fatherNodePathName=(char *)malloc(strlen(pathname)+1);//分配空间
-    strncpy(fatherNodePathName,lastposi,pathname);
+    strncpy(fatherNodePathName,lastposi+1,pathname);
     return find(fatherNodePathName,root);
 }
 
