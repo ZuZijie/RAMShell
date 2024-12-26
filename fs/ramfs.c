@@ -167,7 +167,7 @@ int rmkdir(const char *pathname) {//make new directory
         {
             return -1;
         }
-        int lastposi;
+        int lastposi=strlen(pathname)-1;
         for(int i=strlen(pathname)-1;i>=0;i--)
         {
             if(pathname[i]!='/'&&pathname[i-1]=='/')
