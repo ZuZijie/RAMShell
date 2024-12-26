@@ -26,7 +26,7 @@ node *findFatherNode(const char *pathname)
 }
 
 node *find(const char *pathname, node *current_dir) {
-    char *path_copy=malloc((strlen(pathname)+1)*sizeof(char));
+    char *path_copy=(char *)malloc((strlen(pathname)+1)*sizeof(char));
     strcpy(path_copy, pathname);//复制新的名字以供修改
 
     const char *delim = "/";  
