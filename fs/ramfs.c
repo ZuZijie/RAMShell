@@ -180,7 +180,7 @@ int rmkdir(const char *pathname) {//make new directory
         memset(newDirName,0,sizeof(newDirName));
         for(int i=lastposi;i<strlen(pathname);i++)
         newDirName[i-lastposi]=pathname[i];
-        node *newDir;
+        node *newDir=(node *)malloc(sizeof(node));
         strcpy(newDir->name,newDirName);
         pt_fatherNode->dirents[pt_fatherNode->nrde]=newDir;
         pt_fatherNode->nrde++;
