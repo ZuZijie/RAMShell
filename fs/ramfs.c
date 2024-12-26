@@ -50,9 +50,9 @@ node *find(const char *pathname, node *current_dir) {
         for (int i = 0; i < current_dir->nrde; i++) {
             if (strcmp(current_dir->dirents[i]->name, token) == 0) {
                 found = 1;
-                if (strtok(NULL, delim) == NULL) {
-                    return current_dir;  
-                }
+                // if (strtok(NULL, delim) == NULL) {
+                //     return current_dir;
+                // }
                 current_dir = current_dir->dirents[i];//更新当前位置
                 break;
             }
