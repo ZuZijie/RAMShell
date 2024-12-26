@@ -168,7 +168,7 @@ int rmkdir(const char *pathname) {//make new directory
             return -1;
         }
         int lastposi=strlen(pathname)-1;
-        for(int i=strlen(pathname)-1;i>=0;i--)
+        for(int i=strlen(pathname)-1;i>=1;i--)
         {
             if(pathname[i]!='/'&&pathname[i-1]=='/')
             {
@@ -176,7 +176,8 @@ int rmkdir(const char *pathname) {//make new directory
                 break;
             }
         }
-        char *newDirName=malloc(100*sizeof(char));
+        char newDirName[100];
+        memset(newDirName,0,sizeof(newDirName));
         for(int i=lastposi;i<strlen(pathname);i++)
         newDirName[i-lastposi]=pathname[i];
         node *newDir;
