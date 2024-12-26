@@ -156,7 +156,7 @@ off_t rseek(int fd, off_t offset, int whence) {
 }
 
 int rmkdir(const char *pathname) {//make new directory
-    if(find(pathname,findFatherNode(pathname))!=NULL)
+    if(find(pathname,root)!=NULL)
     {
         return -1;
     }
