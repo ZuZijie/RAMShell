@@ -10,7 +10,7 @@ node *root = NULL;
 FD fdesc[NRFD];
 node *findFatherNode(const char *pathname)
 {
-    int lastposi;
+    int lastposi=0;
     for(int i=strlen(pathname)-1;i>=0;i--)
     {
         if(pathname[i]=='/'&&pathname[i-1]!='/')
