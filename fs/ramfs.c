@@ -25,7 +25,10 @@ node *findFatherNode(const char *pathname)
         fatherNodePathName[i]=pathname[i];
     }
     //strncpy(fatherNodePathName,pathname,lastposi+1);
-    return find(fatherNodePathName,root);
+    if(lastposi==0) {
+        return root;
+    }
+    else return find(fatherNodePathName,root);
 }
 
 node *find(const char *pathname, node *current_dir) {
