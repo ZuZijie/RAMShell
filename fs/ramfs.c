@@ -212,7 +212,7 @@ void init_ramfs() {
     root=malloc(sizeof(node));
     root->content=NULL;
     root->size=0;
-    strcpy(root->name,"root");
+    root->name="root";
     root->dirents=NULL;
     root->nrde=0;
     for(int i=0;i<NRFD;i++)
