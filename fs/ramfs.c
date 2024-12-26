@@ -154,7 +154,7 @@ int rmkdir(const char *pathname) {//make new directory
     }
     else
     {
-        node *pt_fatherNode=findFatherNode(*pathname);
+        node *pt_fatherNode=findFatherNode(pathname);
         if(pt_fatherNode==NULL)return -1;
         if(pt_fatherNode->type==DNODE)
         {
