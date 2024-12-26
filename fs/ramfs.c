@@ -20,7 +20,8 @@ node *findFatherNode(const char *pathname)
         }
     }
     char *fatherNodePathName;
-    fatherNodePathName=(char *)malloc(strlen(pathname)+1);//分配空间
+    fatherNodePathName=(char *)malloc(strlen(pathname)+1);
+    memset(fatherNodePathName,0,sizeof(fatherNodePathName))//分配空间
     for(int i=0;i<lastposi+1;i++) {
         fatherNodePathName[i]=pathname[i];
     }
