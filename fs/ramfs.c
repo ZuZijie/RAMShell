@@ -182,6 +182,7 @@ int rmkdir(const char *pathname) {//make new directory
         newDirName[i-lastposi]=pathname[i];
         node *newDir=(node *)malloc(sizeof(node));
         strcpy(newDir->name,newDirName);
+        pt_fatherNode->dirents=malloc(sizeof(node*));
         pt_fatherNode->dirents[pt_fatherNode->nrde]=newDir;
         pt_fatherNode->nrde++;
         return 0;
