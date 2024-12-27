@@ -62,7 +62,7 @@ node *find(const char *pathname, node *current_dir) {
         }
         token = strtok(NULL, delim);
     }
-
+    free(path_copy);
     return NULL;  
 }
 
