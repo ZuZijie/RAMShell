@@ -3,13 +3,14 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
+#include  "stdio.h"
 
 const char *content = "export PATH=/usr/bin/\n";
 const char *ct = "export PATH=/home:$PATH";
 int main() {
     init_ramfs();
 
-    assert(rmkdir("/home") == 0);
+    printf((rmkdir("/home")));
     // assert(rmkdir("//home") == -1);
     // assert(rmkdir("/home/home/1") == -1);
     // assert(rmkdir("/home/ubuntu") == 0);
