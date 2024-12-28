@@ -33,38 +33,55 @@ node *findFatherNode(const char *pathname)
 }
 
 node *find(const char *pathname, node *current_dir) {
-    char *path_copy=(char *)malloc((strlen(pathname)+1)*sizeof(char));
-    strcpy(path_copy, pathname);//复制新的名字以供修改
+    if (current_dir == NULL) {
+        return NULL; // 检查当前目录是否有效
+    }
 
-    const char *delim = "/";  
-    char *token = strtok(path_copy, delim); 
+    char *path_copy = (char *)malloc((strlen(pathname) + 1) * sizeof(char));
+    if (path_copy == NULL) {
+        return NULL; // 如果内存分配失败，则返回NULL
+    }
+
+    strcpy(path_copy, pathname); // 复制路径
+
+    const char *delim = "/";
+    char *token = strtok(path_copy, delim); // 获取第一个token
 
     while (token != NULL) {
         if (strlen(token) == 0) {
-            token = strtok(NULL, delim);  
-            continue;  
-        }//获取长度不等于0的字符串
+            token = strtok(NULL, delim); // 如果token为空，继续获取下一个
+            continue;
+        }
 
         int found = 0;
 
         for (int i = 0; i < current_dir->nrde; i++) {
             if (strcmp(current_dir->dirents[i]->name, token) == 0) {
                 found = 1;
-                if (strtok(NULL, delim) == NULL) {
-                    return current_dir->dirents[i];
+                char *next_token = strtok(NULL, delim); // 获取下一个token
+
+                if (next_token == NULL) {
+                    free(path_copy); // 在返回之前释放path_copy
+                    return current_dir->dirents[i]; // 找到对应的文件/目录
                 }
-                current_dir = current_dir->dirents[i];//更新当前位置
+
+                current_dir = current_dir->dirents[i]; // 更新当前目录
                 break;
             }
         }
+
         if (!found) {
-            return NULL;
+            free(path_copy); // 在返回之前释放path_copy
+            return NULL; // 找不到匹配项，返回NULL
         }
-        token = strtok(NULL, delim);
+
+        token = strtok(NULL, delim); // 获取下一个token
     }
-    free(path_copy);
-    return NULL;  
+
+    free(path_copy); // 释放内存
+    return NULL; // 没有找到匹配项
 }
+
 
 int ropen(const char *pathname, int flags) {
     node *pt_node=find(pathname,root);
