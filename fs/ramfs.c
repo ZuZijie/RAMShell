@@ -121,6 +121,7 @@ int ropen(const char *pathname, int flags) {
                 {
                     runlink(pathname);
                     rmkdir(pathname);
+                    find(pathname,root)->type=FNODE;
                 }
                 fdesc[i].f=pt_node;
                 return i;
@@ -255,8 +256,4 @@ void init_ramfs() {
 
 void close_ramfs() {
 
-}
-void init_new_node(node *new_node) {
-    // new_node->dirents=malloc(sizeof(node*));
-    // new_node->nrde=0;
 }
