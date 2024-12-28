@@ -200,9 +200,10 @@ int rmkdir(const char *pathname) {//make new directory
         newDirName[i-lastposi]=pathname[i];
 
         node *newDir=(node *)malloc(sizeof(node));
-        init_new_node(newDir);
+        // init_new_node(newDir);
         newDir->name=(char *)malloc(strlen(newDirName)+1);
         strcpy(newDir->name,newDirName);
+        newDir->nrde=0;
         pt_fatherNode->dirents=malloc(sizeof(node*));
         pt_fatherNode->dirents[pt_fatherNode->nrde]=newDir;
         pt_fatherNode->nrde++;
