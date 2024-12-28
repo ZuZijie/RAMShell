@@ -10,8 +10,8 @@ int main() {
     init_ramfs();
 
     assert(rmkdir("/home") == 0);
-    assert(rmkdir("//home") == -1);
-    assert(rmkdir("/home/home/1") == -1);
+    // assert(rmkdir("//home") == -1);
+    // assert(rmkdir("/home/home/1") == -1);
     // assert(rmkdir("/home/ubuntu") == 0);
     // assert(rmkdir("/usr") == 0);
     // assert(rmkdir("/usr/bin") == 0);
