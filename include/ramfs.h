@@ -28,7 +28,7 @@
 typedef struct node
 {
   enum { FNODE, DNODE } type;
-  struct node (* dirents)[4096];
+  struct node * dirents[4096];
   // if DTYPE child dir
   void *content;
   int nrde;//num of dirents

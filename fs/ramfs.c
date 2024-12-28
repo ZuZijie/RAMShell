@@ -204,7 +204,7 @@ int rmkdir(const char *pathname) {//make new directory
         newDir->name=(char *)malloc(strlen(newDirName)+1);
         strcpy(newDir->name,newDirName);
         newDir->nrde=0;
-        newDir->dirents=malloc(4096*sizeof(node*));
+        // newDir->dirents=malloc(4096*sizeof(node*));
         pt_fatherNode->dirents[pt_fatherNode->nrde]=newDir;
         pt_fatherNode->nrde++;
         return 0;
@@ -245,7 +245,7 @@ void init_ramfs() {
     root->content=NULL;
     root->size=0;
     root->name="root";
-    root->dirents=malloc(4096*sizeof(node*));
+    // root->dirents=malloc(4096*sizeof(node*));
     root->nrde=0;
     for(int i=0;i<NRFD;i++)
     {
