@@ -256,6 +256,6 @@ void close_ramfs() {
 
 }
 void init_new_node(node *new_node) {
-    new_node->dirents=malloc(sizeof(node*));
-    new_node->nrde=0;
+    // new_node->dirents=malloc(sizeof(node*));
+    // new_node->nrde=0;
 }
