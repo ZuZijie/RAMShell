@@ -13,7 +13,7 @@ int main() {
     assert(rmkdir("//home") == -1);
     assert(rmkdir("/test/1") == -1);
     assert(rmkdir("/home/ubuntu") == 0);
-    // assert(rmkdir("/usr") == 0);
+    assert(rmkdir("/usr") == 0);
     // assert(rmkdir("/usr/bin") == 0);
     // assert(rwrite(ropen("/home///ubuntu//.bashrc", O_CREAT | O_WRONLY), content, strlen(content)) == strlen(content));
 
