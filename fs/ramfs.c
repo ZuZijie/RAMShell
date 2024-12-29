@@ -181,8 +181,8 @@ ssize_t rwrite(int fd, const void *buf, size_t count) {
         int currentposi=fdesc[fd].offset;
         printf("%d",strlen(buf));
         if(count>strlen(buf))count=strlen(buf);
-        if(fdesc[fd].f->size<fdesc[fd].offset+1+count) {
-            fdesc[fd].f->size=fdesc[fd].offset+1+count;
+        if(fdesc[fd].f->size<fdesc[fd].offset+count) {
+            fdesc[fd].f->size=fdesc[fd].offset+count;
         }
         strncpy(fdesc[fd].f->content+fdesc[fd].offset,buf,count);
         return count;
