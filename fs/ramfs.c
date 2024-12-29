@@ -29,7 +29,13 @@ node *findFatherNode(const char *pathname)
     if(lastposi==0) {
         return root;
     }
-    else return find(fatherNodePathName,root);
+
+    else {
+        for(int i=lastposi+1;i<strlen(fatherNodePathName);i++) {
+            fatherNodePathName[i]='\0';
+        }
+        return find(fatherNodePathName,root);
+    }
 }
 
 node *find(const char *pathname, node *current_dir) {
