@@ -29,7 +29,7 @@ int main() {
     assert(!strcmp(buf, content));
     assert(rwrite(ropen("/home////ubuntu//.bashrc", O_WRONLY | O_APPEND), ct, strlen(ct)) == strlen(ct));
     memset(buf, 0, sizeof(buf));
-    // assert(rread(fd, buf, 100) == strlen(ct));
+    assert(rread(fd, buf, 100) == strlen(ct));
     // assert(!strcmp(buf, ct));
     // assert(rseek(fd, 0, SEEK_SET) == 0);
     // memset(buf, 0, sizeof(buf));
