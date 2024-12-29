@@ -214,7 +214,7 @@ int rmkdir(const char *pathname) {//make new directory
 int rrmdir(const char *pathname) {//remove directory
 
 }
-int rmkfile(const char *pathname) {//make new directory
+int rmkfile(const char *pathname) {//make new file
     if(find(pathname,root)!=NULL)
     {
         return -1;
