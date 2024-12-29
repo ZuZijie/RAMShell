@@ -27,7 +27,7 @@ int main() {
 
     assert(rread(fd, buf, 100) == strlen(content));
     assert(!strcmp(buf, content));
-    // assert(rwrite(ropen("/home////ubuntu//.bashrc", O_WRONLY | O_APPEND), ct, strlen(ct)) == strlen(ct));
+    assert(rwrite(ropen("/home////ubuntu//.bashrc", O_WRONLY | O_APPEND), ct, strlen(ct)) == strlen(ct));
     // memset(buf, 0, sizeof(buf));
     // assert(rread(fd, buf, 100) == strlen(ct));
     // assert(!strcmp(buf, ct));
