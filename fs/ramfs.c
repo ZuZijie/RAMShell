@@ -173,12 +173,29 @@ int rclose(int fd) {
 ssize_t rwrite(int fd, const void *buf, size_t count) {
     if(fdesc[fd].used==0){
         return  -1;
+    }
+    else if(fdesc[fd].f->type==DNODE)return  -1;
+    else if(fdesc[fd].flags==0) return  -1;
+    else {
+        buf=(char *)buf;
+        int currentposi=count;
+    }
 }
-    if(fdesc[fd].f->type==DNODE)return  -1;
-    if(fdesc[fd].flags==0){}
 
 ssize_t rread(int fd, void *buf, size_t count) {
-        
+    if(fdesc[fd].used==0){
+        return  -1;
+    }
+    else if(fdesc[fd].f->type==DNODE)return  -1;
+    else if(fdesc[fd].flags==1) return  -1;
+    else {
+        int currentposi=fdesc[fd].offset;
+        if(count>strlen(fdesc[fd].f->size)-fdesc[fd].offset) {
+            count=strlen(fdesc[fd].f->size)-fdesc[fd].offset;
+        }
+        strncpy(buf, fdesc[fd].f->content+fdesc[fd].offset,count);
+        return count;
+    }
 }
 
 off_t rseek(int fd, off_t offset, int whence) {
@@ -273,6 +290,7 @@ int rmkfile(const char *pathname) {//make new file
         // newDir->dirents=malloc(4096*sizeof(node*));
         pt_fatherNode->dirents[pt_fatherNode->nrde]=newDir;
         newDir->type=FNODE;
+        newDir->size=0;
         pt_fatherNode->nrde++;
         return 0;
     }
