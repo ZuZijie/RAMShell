@@ -143,7 +143,7 @@ int ropen(const char *pathname, int flags) {
                 }
                 if(pt_node==NULL)pt_node=findFatherNode(pathname);
                 fdesc[i].used=1;
-                fdesc[i].f=pt_node;
+                fdesc[i].f=find(pathname,pt_node);
                 return i;
             }
             if(i==NRFD-1&&fdesc[i].used==1)return -1;
