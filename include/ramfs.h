@@ -60,3 +60,4 @@ void init_ramfs();
 void close_ramfs();
 node *find(const char *pathname,node *current_dir);
 void init_new_node(node *new_node);
+int rmkfile(const char *pathname);

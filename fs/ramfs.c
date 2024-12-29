@@ -91,7 +91,7 @@ int ropen(const char *pathname, int flags) {
         isNull=1;
         if(flags>=64&&flags<=67)
         {
-            rmkdir(pathname);
+            rmkfile(pathname);
         }
         else return -1;
     }
@@ -213,6 +213,45 @@ int rmkdir(const char *pathname) {//make new directory
 
 int rrmdir(const char *pathname) {//remove directory
 
+}
+int rmkfile(const char *pathname) {//make new directory
+    if(find(pathname,root)!=NULL)
+    {
+        return -1;
+    }
+    else
+    {
+        node *pt_fatherNode=findFatherNode(pathname);
+        if(pt_fatherNode==NULL)return -1;
+        if(pt_fatherNode->type==FNODE)
+        {
+            return -1;
+        }
+        int lastposi=strlen(pathname)-1;
+        for(int i=strlen(pathname)-1;i>=1;i--)
+        {
+            if(pathname[i]!='/'&&pathname[i-1]=='/')
+            {
+                lastposi=i;
+                break;
+            }
+        }
+        char newDirName[100];
+        memset(newDirName,0,sizeof(newDirName));
+        for(int i=lastposi;i<strlen(pathname);i++)
+            newDirName[i-lastposi]=pathname[i];
+
+        node *newDir=(node *)malloc(sizeof(node));
+        // init_new_node(newDir);
+        newDir->name=(char *)malloc(strlen(newDirName)+1);
+        strcpy(newDir->name,newDirName);
+        newDir->nrde=0;
+        // newDir->dirents=malloc(4096*sizeof(node*));
+        pt_fatherNode->dirents[pt_fatherNode->nrde]=newDir;
+        newDir->type=FNODE;
+        pt_fatherNode->nrde++;
+        return 0;
+    }
 }
 
 int runlink(const char *pathname) {
