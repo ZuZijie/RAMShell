@@ -179,6 +179,7 @@ ssize_t rwrite(int fd, const void *buf, size_t count) {
     else {
         buf=(char *)buf;
         int currentposi=fdesc[fd].offset;
+        if(count>strlen(buf))count=strlen(buf);
         if(fdesc[fd].f->size<fdesc[fd].offset+1+count) {
             fdesc[fd].f->size=fdesc[fd].offset+1+count;
         }
