@@ -141,6 +141,7 @@ int ropen(const char *pathname, int flags) {
                     runlink(pathname);
                     rmkdir(pathname);
                 }
+                fdesc[i].used=1;
                 fdesc[i].f=pt_node;
                 return i;
             }
