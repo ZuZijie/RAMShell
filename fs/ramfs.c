@@ -171,8 +171,11 @@ int rclose(int fd) {
 }
 
 ssize_t rwrite(int fd, const void *buf, size_t count) {
-
+    if(fdesc[fd].used==0){
+        return  -1;
 }
+    if(fdesc[fd].f->type==DNODE)return  -1;
+    if(fdesc[fd].flags==0){}
 
 ssize_t rread(int fd, void *buf, size_t count) {
         
