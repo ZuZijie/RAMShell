@@ -298,6 +298,7 @@ int rmkfile(const char *pathname) {//make new file
         pt_fatherNode->dirents[pt_fatherNode->nrde]=newDir;
         newDir->type=FNODE;
         newDir->size=0;
+        newDir->content=malloc(1000*sizeof(void ));
         pt_fatherNode->nrde++;
         return 0;
     }
