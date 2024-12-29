@@ -115,7 +115,6 @@ int ropen(const char *pathname, int flags) {
         }
         else return -1;
     }
-    else
     {
         for(int i=0;i<NRFD;i++)
         {
