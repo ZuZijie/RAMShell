@@ -54,8 +54,9 @@ node *find(const char *pathname, node *current_dir) {
     char *token = strtok(path_copy, delim); // 获取第一个token
 
     while (token != NULL) {
+        // 如果token为空（表示多个斜杠的情况），跳过
         if (strlen(token) == 0) {
-            token = strtok(NULL, delim); // 如果token为空，继续获取下一个
+            token = strtok(NULL, delim);
             continue;
         }
 
@@ -87,6 +88,7 @@ node *find(const char *pathname, node *current_dir) {
     free(path_copy); // 释放内存
     return NULL; // 没有找到匹配项
 }
+
 
 
 int ropen(const char *pathname, int flags) {
