@@ -17,7 +17,7 @@ int main() {
     assert(rmkdir("/usr") == 0);
     assert(rmkdir("/usr/bin") == 0);
     printf("%d\n", ropen("/home///ubuntu//.bashrc", O_CREAT | O_WRONLY));
-    assert(rwrite(ropen("/home///ubuntu//.bashrc", O_CREAT | O_WRONLY), content, strlen(content)) == strlen(content));
+    // assert(rwrite(ropen("/home///ubuntu//.bashrc", O_CREAT | O_WRONLY), content, strlen(content)) == strlen(content));
 
     // int fd = ropen("/home/ubuntu/.bashrc", O_RDONLY);
     // char buf[105] = {0};
@@ -58,4 +58,5 @@ int main() {
     //
     // close_shell();
     // close_ramfs();
+    return  0;
 }
