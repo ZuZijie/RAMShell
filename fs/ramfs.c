@@ -55,6 +55,9 @@ node *find(const char *pathname, node *current_dir) {
 
     while (1) {
         // 如果token为空（表示多个斜杠的情况），跳过
+        if (token == NULL) {
+            continue;
+        }
         if (strlen(token) == 0) {
             token = strtok(NULL, delim);
             continue;
