@@ -92,7 +92,6 @@ int ropen(const char *pathname, int flags) {
         if(flags>=64&&flags<=67)
         {
             rmkdir(pathname);
-            find(pathname,root)->type=DNODE;
         }
         else return -1;
     }
@@ -122,7 +121,6 @@ int ropen(const char *pathname, int flags) {
                 {
                     runlink(pathname);
                     rmkdir(pathname);
-                    find(pathname,root)->type=FNODE;
                 }
                 fdesc[i].f=pt_node;
                 return i;
