@@ -22,10 +22,10 @@ int main() {
     printf("%d\n", ropen("/home///ubuntu//.bashrc2", O_CREAT | O_WRONLY));
     assert(rwrite(0, content, strlen(content)) == strlen(content));
 
-    // int fd = ropen("/home/ubuntu/.bashrc", O_RDONLY);
-    // char buf[105] = {0};
-    //
-    // assert(rread(fd, buf, 100) == strlen(content));
+    int fd = ropen("/home/ubuntu/.bashrc", O_RDONLY);
+    char buf[105] = {0};
+
+    assert(rread(fd, buf, 100) == strlen(content));
     // assert(!strcmp(buf, content));
     // assert(rwrite(ropen("/home////ubuntu//.bashrc", O_WRONLY | O_APPEND), ct, strlen(ct)) == strlen(ct));
     // memset(buf, 0, sizeof(buf));
