@@ -53,15 +53,15 @@ node *find(const char *pathname, node *current_dir) {
     const char *delim = "/";
     char *token = strtok(path_copy, delim); // 获取第一个token
 
-    while (1) {
-        // 如果token为空（表示多个斜杠的情况），跳过
-        if (token == NULL) {
+    while (token != NULL) {
+        // 如果token为空（表示多个斜杠的情况），直接跳过
+        while (token != NULL && strlen(token) == 0) {
             token = strtok(NULL, delim);
-            continue;
         }
-        if (strlen(token) == 0) {
-            token = strtok(NULL, delim);
-            continue;
+
+        // 如果跳过空 token 后 token 仍为空，说明路径处理完毕
+        if (token == NULL) {
+            break;
         }
 
         int found = 0;
@@ -70,6 +70,11 @@ node *find(const char *pathname, node *current_dir) {
             if (strcmp(current_dir->dirents[i]->name, token) == 0) {
                 found = 1;
                 char *next_token = strtok(NULL, delim); // 获取下一个token
+
+                // 跳过连续的空 token
+                while (next_token != NULL && strlen(next_token) == 0) {
+                    next_token = strtok(NULL, delim);
+                }
 
                 if (next_token == NULL) {
                     free(path_copy); // 在返回之前释放path_copy
@@ -92,6 +97,7 @@ node *find(const char *pathname, node *current_dir) {
     free(path_copy); // 释放内存
     return NULL; // 没有找到匹配项
 }
+
 
 
 
