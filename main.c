@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <stdio.h>
 
 const char *content = "export PATH=/usr/bin/\n";
 const char *ct = "export PATH=/home:$PATH";
@@ -15,6 +16,7 @@ int main() {
     assert(rmkdir("/home/ubuntu") == 0);
     assert(rmkdir("/usr") == 0);
     assert(rmkdir("/usr/bin") == 0);
+    printf("%d\n", ropen("/home///ubuntu//.bashrc", O_CREAT | O_WRONLY));
     assert(rwrite(ropen("/home///ubuntu//.bashrc", O_CREAT | O_WRONLY), content, strlen(content)) == strlen(content));
 
     // int fd = ropen("/home/ubuntu/.bashrc", O_RDONLY);
