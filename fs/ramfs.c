@@ -43,63 +43,65 @@ node *find(const char *pathname, node *current_dir) {
         return NULL; // 检查当前目录是否有效
     }
 
+    // 分配内存并复制路径
     char *path_copy = (char *)malloc((strlen(pathname) + 1) * sizeof(char));
     if (path_copy == NULL) {
-        return NULL; // 如果内存分配失败，则返回NULL
+        return NULL; // 如果内存分配失败，则返回 NULL
     }
-
-    strcpy(path_copy, pathname); // 复制路径
+    strcpy(path_copy, pathname);
 
     const char *delim = "/";
-    char *token = strtok(path_copy, delim); // 获取第一个token
+    char *token = strtok(path_copy, delim); // 获取第一个 token
 
+    // 循环处理路径中的每个部分
     while (token != NULL) {
-        // 如果token为空（表示多个斜杠的情况），直接跳过
+        // 跳过空 token（连续斜杠）
         while (token != NULL && strlen(token) == 0) {
             token = strtok(NULL, delim);
         }
 
-        // 如果跳过空 token 后 token 仍为空，说明路径处理完毕
+        // 如果跳过空 token 后，token 仍然是 NULL，则路径处理完毕
         if (token == NULL) {
             break;
         }
 
         int found = 0;
 
+        // 在当前目录中查找与 token 匹配的节点
         for (int i = 0; i < current_dir->nrde; i++) {
             if (strcmp(current_dir->dirents[i]->name, token) == 0) {
                 found = 1;
-                char *next_token = strtok(NULL, delim); // 获取下一个token
+
+                // 获取下一个 token
+                token = strtok(NULL, delim);
 
                 // 跳过连续的空 token
-                while (next_token != NULL && strlen(next_token) == 0) {
-                    next_token = strtok(NULL, delim);
+                while (token != NULL && strlen(token) == 0) {
+                    token = strtok(NULL, delim);
                 }
 
-                if (next_token == NULL) {
-                    free(path_copy); // 在返回之前释放path_copy
-                    return current_dir->dirents[i]; // 找到对应的文件/目录
+                // 如果没有更多 token，则返回找到的节点
+                if (token == NULL) {
+                    free(path_copy); // 在返回之前释放 path_copy
+                    return current_dir->dirents[i];
                 }
 
-                current_dir = current_dir->dirents[i]; // 更新当前目录
+                // 更新当前目录为找到的节点
+                current_dir = current_dir->dirents[i];
                 break;
             }
         }
 
+        // 如果在当前目录中未找到匹配的节点
         if (!found) {
-            free(path_copy); // 在返回之前释放path_copy
-            return NULL; // 找不到匹配项，返回NULL
+            free(path_copy); // 在返回之前释放 path_copy
+            return NULL;
         }
-
-        token = strtok(NULL, delim); // 获取下一个token
     }
 
     free(path_copy); // 释放内存
-    return NULL; // 没有找到匹配项
+    return current_dir; // 返回当前目录（如果路径为空，则返回当前目录）
 }
-
-
-
 
 int ropen(const char *pathname, int flags) {
     node *pt_node=find(pathname,root);
