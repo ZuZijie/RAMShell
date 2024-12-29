@@ -197,7 +197,7 @@ ssize_t rread(int fd, void *buf, size_t count) {
     else if(fdesc[fd].flags==1) return  -1;
     else {
         int currentposi=fdesc[fd].offset;
-        if(count>(strlen(fdesc[fd].f->size)-fdesc[fd].offset)) {
+        if(strlen(count)>(strlen(fdesc[fd].f->size)-fdesc[fd].offset)) {
             count=strlen(fdesc[fd].f->size)-fdesc[fd].offset;
         }
         strncpy(buf, fdesc[fd].f->content+fdesc[fd].offset,count);
