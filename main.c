@@ -46,10 +46,10 @@ int main() {
     assert((fd[1] = ropen("/1", O_CREAT | O_RDONLY)) >= 0);
     assert((fd[2] = ropen("/2", O_CREAT | O_RDONLY)) >= 0);
     assert((fd[3] = ropen("/3", O_CREAT | O_RDONLY)) >= 0);
-    // assert(rwrite(fd[0], buf, 1) == -1);
-    // assert(rwrite(fd[1], buf, 1) == -1);
-    // assert(rwrite(fd[2], buf, 1) == -1);
-    // assert(rwrite(fd[3], buf, 1) == -1);
+    assert(rwrite(fd[0], buf, 1) == -1);
+    assert(rwrite(fd[1], buf, 1) == -1);
+    assert(rwrite(fd[2], buf, 1) == -1);
+    assert(rwrite(fd[3], buf, 1) == -1);
     // for (int i = 0; i < 50; i++) {
       // // assert(rread(fd[0], buf, 10) == 10);
       // // assert(memcmp(buf, "\0\0\0\0\0\0\0\0\0\0", 10) == 0);
