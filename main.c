@@ -32,8 +32,9 @@ int main() {
     assert(rread(fd[1], buf, 1) == -1);
     assert(rread(fd[2], buf, 1) == -1);
     assert(rread(fd[3], buf, 1) == -1);
+    printf("%d",rwrite(fd[0], "\0\0\0\0\0", 5));
     for (int i = 0; i < 100; i++) {
-        printf("%d",rwrite(fd[0], "\0\0\0\0\0", 5));
+
     assert(rwrite(fd[0], "\0\0\0\0\0", 5) == 5);
     assert(rwrite(fd[1], "hello", 5) == 5);
     assert(rwrite(fd[2], "world", 5) == 5);
