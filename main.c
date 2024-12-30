@@ -51,10 +51,10 @@ int main() {
     assert(rwrite(fd[2], buf, 1) == -1);
     assert(rwrite(fd[3], buf, 1) == -1);
     for (int i = 0; i < 50; i++) {
-      // assert(rread(fd[0], buf, 10) == 10);
-      // assert(memcmp(buf, "\0\0\0\0\0\0\0\0\0\0", 10) == 0);
-      // assert(rread(fd[1], buf, 10) == 10);
-      // assert(memcmp(buf, "hellohello", 10) == 0);
+      assert(rread(fd[0], buf, 10) == 10);
+      assert(memcmp(buf, "\0\0\0\0\0\0\0\0\0\0", 10) == 0);
+      assert(rread(fd[1], buf, 10) == 10);
+      assert(memcmp(buf, "hellohello", 10) == 0);
       assert(rread(fd[2], buf, 10) == 10);
       assert(memcmp(buf, "worldworld", 10) == 0);
       assert(rread(fd[3], buf, 10) == 10);
