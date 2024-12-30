@@ -159,10 +159,6 @@ int rclose(int fd) {
         {
             return -1;
         }
-        else if(fdesc[fd].used==0)
-        {
-            return -1;
-        }
         else{
             fdesc[fd].used=1;
         }
