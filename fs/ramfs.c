@@ -278,7 +278,10 @@ int rrmdir(const char *pathname) {//remove directory
     node * pt_fatherNode=findFatherNode(pathname);
     for(int i=0;i<sizeof(pt_fatherNode->dirents)/sizeof(node *);i++) {
         if(pt_fatherNode->dirents[i]!=NULL) {
-            if(pt_fatherNode->dirents[i]==pt_node)pt_fatherNode->dirents[i]=NULL;
+            if(pt_fatherNode->dirents[i]==pt_node) {
+                pt_fatherNode->dirents[i]=NULL;
+                break;
+            }
         }
     }
     return 0;
