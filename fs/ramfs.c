@@ -245,7 +245,12 @@ int rmkdir(const char *pathname) {//make new directory
         for(int i=lastposi;i<strlen(pathname);i++)
         newDirName[i-lastposi]=pathname[i];
         for(int i=0;i<strlen(newDirName);i++) {
-            if(newDirName[i]!='.' && newDirName[i]>'Z' && newDirName[i]<'A' && newDirName[i]>'z' && newDirName[i]<'a' && newDirName[i]>'9' && newDirName[i]<'0')return -1;
+            if (!( (newDirName[i] >= 'A' && newDirName[i] <= 'Z') ||
+       (newDirName[i] >= 'a' && newDirName[i] <= 'z') ||
+       (newDirName[i] >= '0' && newDirName[i] <= '9') ||
+       newDirName[i] == '.')) {
+                return -1;
+       }
         }
         if(strlen(pathname)>32)return -1;
         node *newDir=(node *)malloc(sizeof(node));
@@ -290,7 +295,12 @@ int rmkfile(const char *pathname) {//make new file
         for(int i=lastposi;i<strlen(pathname);i++)
             newDirName[i-lastposi]=pathname[i];
         for(int i=0;i<strlen(newDirName);i++) {
-            if(newDirName[i]!='.' && newDirName[i]>'Z' && newDirName[i]<'A' && newDirName[i]>'z' && newDirName[i]<'a' && newDirName[i]>'9' && newDirName[i]<'0')return -1;
+            if (!( (newDirName[i] >= 'A' && newDirName[i] <= 'Z') ||
+       (newDirName[i] >= 'a' && newDirName[i] <= 'z') ||
+       (newDirName[i] >= '0' && newDirName[i] <= '9') ||
+       newDirName[i] == '.')) {
+                return -1;
+       }
         }
         if(strlen(pathname)>32)return -1;
         node *newDir=(node *)malloc(sizeof(node));
