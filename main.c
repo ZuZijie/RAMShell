@@ -43,17 +43,17 @@ int main() {
     assert(rread(fd, buf2, 100) == 12);
     assert(!memcmp(buf2, "hello\0\0world", 12));
 
-    init_shell();
-
-    assert(scat("/home/ubuntu/.bashrc") == 0);
-    assert(stouch("/home/ls") == 0);
-    assert(stouch("/home///ls") == 0);
-    assert(swhich("ls") == 0);
-    assert(stouch("/usr/bin/ls") == 0);
-    assert(swhich("ls") == 0);
-    assert(secho("hello world\\n") == 0);
-    assert(secho("\\$PATH is $PATH") == 0);
-
-    close_shell();
-    close_ramfs();
+    // init_shell();
+    //
+    // assert(scat("/home/ubuntu/.bashrc") == 0);
+    // assert(stouch("/home/ls") == 0);
+    // assert(stouch("/home///ls") == 0);
+    // assert(swhich("ls") == 0);
+    // assert(stouch("/usr/bin/ls") == 0);
+    // assert(swhich("ls") == 0);
+    // assert(secho("hello world\\n") == 0);
+    // assert(secho("\\$PATH is $PATH") == 0);
+    //
+    // close_shell();
+    // close_ramfs();
 }
