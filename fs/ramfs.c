@@ -362,5 +362,34 @@ void init_ramfs() {
 }
 
 void close_ramfs() {
+    free_node(root);
+}
+void free_node(node *root) {
+    if (root == NULL) {
+        return; // 如果节点为空，直接返回
+    }
 
+    // 如果当前节点是目录节点 (DNODE)，递归释放子节点
+    if (root->type == DNODE) {
+        for (int i = 0; i < root->nrde; i++) {
+            if (root->dirents[i] != NULL) {
+                free_node(root->dirents[i]); // 递归释放子节点
+                root->dirents[i] = NULL;    // 避免悬空指针
+            }
+        }
+    }
+
+    // 释放节点的其他动态分配的资源
+    if (root->name != NULL) {
+        free(root->name); // 释放节点的名称
+        root->name = NULL;
+    }
+
+    if (root->content != NULL && root->type == FNODE) {
+        free(root->content); // 如果是文件节点，释放文件内容
+        root->content = NULL;
+    }
+
+    // 最后释放当前节点本身
+    free(root);
 }
