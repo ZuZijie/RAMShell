@@ -336,9 +336,10 @@ int runlink(const char *pathname) {
             node *pt_fatherNode=findFatherNode(pathname);
             for(int i=0;i<pt_fatherNode->nrde;i++)
             {
-                if(strcmp(pt_fatherNode->dirents[i],pt_node->name)==0)
+                if(strcmp(pt_fatherNode->dirents[i]->name,pt_node->name)==0)
                 {
-                    strcpy(pt_fatherNode->dirents[i],"/0");
+                    // strcpy(pt_fatherNode->dirents[i],"/0");
+                    pt_fatherNode->dirents[i]=NULL;
                     pt_fatherNode->nrde--; 
                     return 0;
                 }
