@@ -60,13 +60,13 @@ int main() {
       assert(rread(fd[3], buf, 10) == 10);
       assert(memcmp(buf, "\x001\x002\x003\x0fe\x0ff\x001\x002\x003\x0fe\x0ff", 10) == 0);
     }
-    // assert(rread(fd[0], buf, 10) == 0);
-    // assert(rread(fd[1], buf, 10) == 0);
-    // assert(rread(fd[2], buf, 10) == 0);
-    // assert(rread(fd[3], buf, 10) == 0);
-    // assert(rclose(fd[0]) == 0);
-    // assert(rclose(fd[1]) == 0);
-    // assert(rclose(fd[2]) == 0);
-    // assert(rclose(fd[3]) == 0);
-    // return 0;
+    assert(rread(fd[0], buf, 10) == 0);
+    assert(rread(fd[1], buf, 10) == 0);
+    assert(rread(fd[2], buf, 10) == 0);
+    assert(rread(fd[3], buf, 10) == 0);
+    assert(rclose(fd[0]) == 0);
+    assert(rclose(fd[1]) == 0);
+    assert(rclose(fd[2]) == 0);
+    assert(rclose(fd[3]) == 0);
+    return 0;
 }
