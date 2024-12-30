@@ -295,8 +295,7 @@ int rmkfile(const char *pathname) {//make new file
         for(int i=lastposi;i<strlen(pathname);i++)
             newDirName[i-lastposi]=pathname[i];
         for(int i=0;i<strlen(newDirName);i++) {
-            if (!( (newDirName[i] >= 'A' && newDirName[i] <= 'Z') ||
-       (newDirName[i] >= 'a' && newDirName[i] <= 'z') ||
+            if (!( (newDirName[i] >= 'A' && newDirName[i] <= 'Z') ||(newDirName[i] >= 'a' && newDirName[i] <= 'z') ||
        (newDirName[i] >= '0' && newDirName[i] <= '9') ||
        newDirName[i] == '.')) {
                 return -1;
