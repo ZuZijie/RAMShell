@@ -28,7 +28,7 @@ int main() {
     assert((fd[2] = ropen("/2", O_CREAT | O_WRONLY)) >= 0);
     assert((fd[3] = ropen("/3", O_CREAT | O_WRONLY)) >= 0);
     assert(rread(fd[0], buf, 1) == -1);
-    // assert(rread(fd[1], buf, 1) == -1);
+    assert(rread(fd[1], buf, 1) == -1);
     // assert(rread(fd[2], buf, 1) == -1);
     // assert(rread(fd[3], buf, 1) == -1);
     // for (int i = 0; i < 100; i++) {
