@@ -269,7 +269,19 @@ int rmkdir(const char *pathname) {//make new directory
 }
 
 int rrmdir(const char *pathname) {//remove directory
-
+    if(pathname[0]!='/')return -1;
+    node *pt_node=find(pathname,root);
+    if(pt_node==NULL)return -1;
+    if(pt_node->type==FNODE)return -1;
+    if(pt_node==root)return -1;
+    if(pt_node->nrde!=0)return -1;
+    node *pt_fatherNode=findFatherNode(pathname);
+    for(int i=0;i<4096;i++) {
+        if(pt_fatherNode->dirents[i]!=NULL) {
+            if(pt_fatherNode->dirents[i]==pt_node)pt_fatherNode=NULL;
+        }
+    }
+    return 0;
 }
 int rmkfile(const char *pathname) {//make new file
     if(pathname[0]!='/')return -1;
