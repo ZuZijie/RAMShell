@@ -28,7 +28,7 @@ int main() {
     test(rrmdir, -1, "/it/has/been");
     test(rrmdir, 0, "/it/has/been/a/long");
     test(rwrite, -1, fd, "a", 1);
-    // test(rread, -1, fd, buf, 100);
+    test(rread, -1, fd, buf, 100);
 
     // init_shell();
     close_shell();
