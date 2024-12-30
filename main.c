@@ -38,7 +38,7 @@ int main() {
       assert(rwrite(fd[3], "\x001\x002\x003\x0fe\x0ff", 5) == 5);
     }
     assert(rclose(fd[0]) == 0);
-    // assert(rclose(fd[1]) == 0);
+    assert(rclose(fd[1]) == 0);
     // assert(rclose(fd[2]) == 0);
     // assert(rclose(fd[3]) == 0);
     // assert(rclose(genfd(fd, 4)) == -1);
