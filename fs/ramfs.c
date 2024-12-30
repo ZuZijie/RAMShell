@@ -293,12 +293,13 @@ int rmkfile(const char *pathname) {//make new file
         char newDirName[100];
         memset(newDirName,0,sizeof(newDirName));
         for(int i=lastposi;i<strlen(pathname);i++) {
-            newDirName[i-lastposi]=pathname[i];
+
             if (!( (pathname[i] >= 'A' && pathname[i] <= 'Z') ||(pathname[i] >= 'a' && pathname[i] <= 'z') ||
        (pathname[i] >= '0' && pathname[i] <= '9') ||
        pathname[i] == '.')) {
                 return -1;
        }
+            newDirName[i-lastposi]=pathname[i];
         }
         for(int i=0;i<strlen(newDirName);i++) {
 
