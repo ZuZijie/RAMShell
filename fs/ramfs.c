@@ -292,14 +292,16 @@ int rmkfile(const char *pathname) {//make new file
         }
         char newDirName[100];
         memset(newDirName,0,sizeof(newDirName));
-        for(int i=lastposi;i<strlen(pathname);i++)
+        for(int i=lastposi;i<strlen(pathname);i++) {
             newDirName[i-lastposi]=pathname[i];
-        for(int i=0;i<strlen(newDirName);i++) {
-            if (!( (newDirName[i] >= 'A' && newDirName[i] <= 'Z') ||(newDirName[i] >= 'a' && newDirName[i] <= 'z') ||
-       (newDirName[i] >= '0' && newDirName[i] <= '9') ||
-       newDirName[i] == '.')) {
+            if (!( (pathname[i] >= 'A' && pathname[i] <= 'Z') ||(pathname[i] >= 'a' && pathname[i] <= 'z') ||
+       (pathname[i] >= '0' && pathname[i] <= '9') ||
+       pathname[i] == '.')) {
                 return -1;
        }
+        }
+        for(int i=0;i<strlen(newDirName);i++) {
+
         }
         if(strlen(pathname)>32)return -1;
         node *newDir=(node *)malloc(sizeof(node));
