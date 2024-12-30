@@ -220,6 +220,7 @@ off_t rseek(int fd, off_t offset, int whence) {
 }
 
 int rmkdir(const char *pathname) {//make new directory
+    if(pathname[0]!='/')return -1;
     if(find(pathname,root)!=NULL)
     {
         return -1;
@@ -270,6 +271,7 @@ int rrmdir(const char *pathname) {//remove directory
 
 }
 int rmkfile(const char *pathname) {//make new file
+    if(pathname[0]!='/')return -1;
     if(find(pathname,root)!=NULL)
     {
         return -1;
