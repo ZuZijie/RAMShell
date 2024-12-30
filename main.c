@@ -30,7 +30,7 @@ int main() {
     test(rwrite, -1, fd, "a", 1);
     test(rread, -1, fd, buf, 100);
 
-    // init_shell();
+    init_shell();
     close_shell();
     // close_ramfs();
     return 0;
