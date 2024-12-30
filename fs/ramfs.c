@@ -244,7 +244,10 @@ int rmkdir(const char *pathname) {//make new directory
         memset(newDirName,0,sizeof(newDirName));
         for(int i=lastposi;i<strlen(pathname);i++)
         newDirName[i-lastposi]=pathname[i];
-
+        for(int i=0;i<strlen(newDirName);i++) {
+            if(newDirName[i]!='.' && newDirName[i]>'Z' && newDirName[i]<'A' && newDirName[i]>'z' && newDirName[i]<'a' && newDirName[i]>'9' && newDirName[i]<'0')return -1;
+        }
+        if(strlen(pathname)>32)return -1;
         node *newDir=(node *)malloc(sizeof(node));
         // init_new_node(newDir);
         newDir->name=(char *)malloc(strlen(newDirName)+1);
