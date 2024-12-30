@@ -24,7 +24,7 @@ int main() {
     // assert(ropen("/abc==d", O_CREAT) == -1);
     assert((fd[0] = ropen("/0", O_RDONLY)) == -1);
     assert((fd[0] = ropen("/0", O_CREAT | O_WRONLY)) >= 0);
-    // assert((fd[1] = ropen("/1", O_CREAT | O_WRONLY)) >= 0);
+    assert((fd[1] = ropen("/1", O_CREAT | O_WRONLY)) >= 0);
     // assert((fd[2] = ropen("/2", O_CREAT | O_WRONLY)) >= 0);
     // assert((fd[3] = ropen("/3", O_CREAT | O_WRONLY)) >= 0);
     // assert(rread(fd[0], buf, 1) == -1);
