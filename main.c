@@ -42,10 +42,10 @@ int main() {
     assert(rclose(fd[2]) == 0);
     assert(rclose(fd[3]) == 0);
     assert(rclose(genfd(fd, 4)) == -1);
-    // assert((fd[0] = ropen("/0", O_CREAT | O_RDONLY)) >= 0);
-    // assert((fd[1] = ropen("/1", O_CREAT | O_RDONLY)) >= 0);
-    // assert((fd[2] = ropen("/2", O_CREAT | O_RDONLY)) >= 0);
-    // assert((fd[3] = ropen("/3", O_CREAT | O_RDONLY)) >= 0);
+    assert((fd[0] = ropen("/0", O_CREAT | O_RDONLY)) >= 0);
+    assert((fd[1] = ropen("/1", O_CREAT | O_RDONLY)) >= 0);
+    assert((fd[2] = ropen("/2", O_CREAT | O_RDONLY)) >= 0);
+    assert((fd[3] = ropen("/3", O_CREAT | O_RDONLY)) >= 0);
     // assert(rwrite(fd[0], buf, 1) == -1);
     // assert(rwrite(fd[1], buf, 1) == -1);
     // assert(rwrite(fd[2], buf, 1) == -1);
