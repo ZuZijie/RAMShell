@@ -196,7 +196,9 @@ ssize_t rread(int fd, void *buf, size_t count) {
         if(count>(fdesc[fd].f->size-fdesc[fd].offset)) {
             count=fdesc[fd].f->size-fdesc[fd].offset;
         }
-        strncpy(buf, fdesc[fd].f->content+fdesc[fd].offset,count);
+        for (size_t i = 0; i < count; ++i) {
+            strncpy(buf + i, fdesc[fd].f->content + fdesc[fd].offset + i, 1);
+        }
         fdesc[fd].offset+=count;
         return count;
     }
