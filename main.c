@@ -32,6 +32,6 @@ int main() {
 
     init_shell();
     close_shell();
-    // close_ramfs();
+    close_ramfs();
     return 0;
 }
