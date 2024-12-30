@@ -68,5 +68,6 @@ int main() {
     assert(rclose(fd[1]) == 0);
     assert(rclose(fd[2]) == 0);
     assert(rclose(fd[3]) == 0);
+    close_ramfs();
     return 0;
 }
