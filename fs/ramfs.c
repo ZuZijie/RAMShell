@@ -111,7 +111,7 @@ int ropen(const char *pathname, int flags) {
         isNull=1;
         if(flags>=64&&flags<=67)
         {
-            rmkfile(pathname);
+            if(rmkfile(pathname)==-1)return -1;
         }
         else return -1;
     }
