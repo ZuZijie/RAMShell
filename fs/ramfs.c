@@ -180,6 +180,7 @@ ssize_t rwrite(int fd, const void *buf, size_t count) {
             fdesc[fd].f->size=fdesc[fd].offset+count;
         }
         strncpy(fdesc[fd].f->content+fdesc[fd].offset,buf,count);
+        fdesc[fd].offset+=count;
         return count;
     }
 }
@@ -196,6 +197,7 @@ ssize_t rread(int fd, void *buf, size_t count) {
             count=fdesc[fd].f->size-fdesc[fd].offset;
         }
         strncpy(buf, fdesc[fd].f->content+fdesc[fd].offset,count);
+        fdesc[fd].offset+=count;
         return count;
     }
 }
