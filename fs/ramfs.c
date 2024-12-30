@@ -163,7 +163,7 @@ int rclose(int fd) {
             fdesc[fd].used=1;
         }
      }
-     return 0;
+     return -1;
 }
 
 ssize_t rwrite(int fd, const void *buf, size_t count) {
