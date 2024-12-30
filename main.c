@@ -39,7 +39,7 @@ int main() {
     }
     assert(rclose(fd[0]) == 0);
     assert(rclose(fd[1]) == 0);
-    // assert(rclose(fd[2]) == 0);
+    assert(rclose(fd[2]) == 0);
     // assert(rclose(fd[3]) == 0);
     // assert(rclose(genfd(fd, 4)) == -1);
     // assert((fd[0] = ropen("/0", O_CREAT | O_RDONLY)) >= 0);
