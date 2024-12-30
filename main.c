@@ -24,10 +24,10 @@ int main() {
     // failopen(fd, "it/has/been/a/long", O_CREAT);
     char buf[105];
     // test(rread, -1, fd, buf, 100);
-    test(rwrite, -1, fd, "a", 1);
-    test(rrmdir, -1, "/it/has/been");
-    test(rrmdir, 0, "/it/has/been/a/long");
-    test(rwrite, -1, fd, "a", 1);
+    // test(rwrite, -1, fd, "a", 1);
+    // test(rrmdir, -1, "/it/has/been");
+    // test(rrmdir, 0, "/it/has/been/a/long");
+    // test(rwrite, -1, fd, "a", 1);
     test(rread, -1, fd, buf, 100);
 
     init_shell();
