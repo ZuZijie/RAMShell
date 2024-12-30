@@ -104,6 +104,7 @@ node *find(const char *pathname, node *current_dir) {
 }
 
 int ropen(const char *pathname, int flags) {
+    if(pathname[0] != '/') return -1;
     node *pt_node=find(pathname,root);
     bool isNull=0;
     if(pt_node==NULL)
