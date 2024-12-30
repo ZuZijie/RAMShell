@@ -42,7 +42,6 @@ int main() {
     assert(rseek(fd, 0, SEEK_SET) == 0);
     assert(rread(fd, buf2, 100) == 12);
     assert(!memcmp(buf2, "hello\0\0world", 12));
-    close_ramfs();
 
     // init_shell();
     //
