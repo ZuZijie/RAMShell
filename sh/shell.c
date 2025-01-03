@@ -36,8 +36,32 @@ int sls(const char *pathname) {
 }
 
 int scat(const char *pathname) {
-  print("cat %s\n", pathname);
-
+    if(find(pathname,root)==NULL) {
+      printf("cat: %s: No such file or directory\n",pathname);
+      return 0;
+    }
+  node *current_node=(node *)malloc(sizeof(node));
+  current_node=findFatherNode(pathname);
+  char *current_node_name=pathname;
+  while(findFatherNode(current_node)!=root) {
+    if(current_node->type==DNODE) {
+      printf("%s: Not a directory\n",current_node->name);
+      return 0;
+    }
+    current_node_name=FatherNodePathName(current_node_name);
+    current_node=find(current_node_name,root);
+  }
+  node *pt_node=(node *)malloc(sizeof(node));
+  pt_node=find(pathname,root);
+  if(find(pathname,root)->type==DNODE) {
+    printf("cat: %s: Is a directory\n",pathname);
+    return 0;
+  }
+  else {
+    for(int i=0;i<pt_node->size;i++)printf("%c",pt_node->content[i]);
+    printf("\n");
+  }
+  return 0;
 }
 
 int smkdir(const char *pathname) {

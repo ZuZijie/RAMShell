@@ -37,6 +37,24 @@ node *findFatherNode(const char *pathname)
         return find(fatherNodePathName,root);
     }
 }
+char *FatherNodePathName(char *pathname) {
+    int lastposi=0;
+    for(int i=strlen(pathname)-1;i>=0;i--)
+    {
+        if(pathname[i]=='/' && i>0 && pathname[i-1]!='/')
+        {
+            lastposi=i;
+            break;
+        }
+    }
+    char *fatherNodePathName;
+    fatherNodePathName=(char *)malloc(strlen(pathname)+1);
+    memset(fatherNodePathName,0,sizeof(fatherNodePathName));//分配空间
+    for(int i=0;i<lastposi+1;i++) {
+        fatherNodePathName[i]=pathname[i];
+    }
+    return  fatherNodePathName;
+}
 
 node *find(const char *pathname, node *current_dir) {
     if (current_dir == NULL) {

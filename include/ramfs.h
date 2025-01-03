@@ -62,3 +62,5 @@ node *find(const char *pathname,node *current_dir);
 void init_new_node(node *new_node);
 int rmkfile(const char *pathname);
 void free_node(node *root);
+node *findFatherNode(const char *pathname);
+char *FatherNodePathName(char *pathname);

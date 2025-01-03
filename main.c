@@ -43,6 +43,7 @@ int main() {
     assert(rread(fd, buf2, 100) == 12);
     assert(!memcmp(buf2, "hello\0\0world", 12));
     sls("");
+    scat("/home/ubuntu/text.txt");
 
     // init_shell();
     //
