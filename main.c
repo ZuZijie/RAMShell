@@ -45,6 +45,7 @@ int main() {
     sls("");
     scat("/home/ubuntu/text.txt");
 
+
     // init_shell();
     //
     // assert(scat("/home/ubuntu/.bashrc") == 0);

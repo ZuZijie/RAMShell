@@ -31,8 +31,8 @@ int sls(const char *pathname) {
         printf("%s ",pt_node->dirents[i]->name);
       }
     }
-
-
+  printf("\n");
+  return 0;
 }
 
 int scat(const char *pathname) {
@@ -68,8 +68,25 @@ int scat(const char *pathname) {
 }
 
 int smkdir(const char *pathname) {
-  print("mkdir %s\n", pathname);
-
+    node *pt_node=(node *)malloc(sizeof(node));
+    pt_node=findFatherNode(pathname);
+  if(pt_node==NULL) {
+    printf("mkdir: cannot create directory '%s': No such file or directory\n",pathname);
+    return 0;
+  }
+  node *current_node=(node *)malloc(sizeof(node));
+  current_node=findFatherNode(pathname);
+  char *current_node_name=pathname;
+  while(findFatherNode(current_node)!=root) {
+    if(current_node->type==DNODE) {
+      printf("%s: Not a directory\n",current_node->name);
+      return 0;
+    }
+    current_node_name=FatherNodePathName(current_node_name);
+    current_node=find(current_node_name,root);
+  }
+  rmkfile(pathname);
+  return 0;
 }
 
 int stouch(const char *pathname) {
@@ -94,3 +111,4 @@ void init_shell() {
 void close_shell() {
 
 }
+
