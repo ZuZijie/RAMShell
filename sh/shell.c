@@ -58,7 +58,7 @@ int scat(const char *pathname) {
     return 0;
   }
   else {
-    for(int i=0;i<pt_node->size;i++)printf("%c",pt_node->content[i]);
+    for(int i=0;i<pt_node->size;i++)printf("%c",(const char)pt_node->content[i]);
     printf("\n");
   }
   return 0;
