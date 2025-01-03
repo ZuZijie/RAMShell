@@ -43,7 +43,7 @@ typedef struct FD
   int flags;
   node *f;
 } FD;
-
+extern struct node *root;
 typedef intptr_t ssize_t;
 typedef uintptr_t size_t;
 typedef long off_t;

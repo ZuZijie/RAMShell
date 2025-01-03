@@ -12,7 +12,26 @@
 #include <stdbool.h>
 
 int sls(const char *pathname) {
-  print("ls %s\n", pathname);
+  node *pt_node=(node *)malloc(sizeof(node));
+  if(pathname == NULL) pt_node=root;
+  else {
+      pt_node = find(pathname,root);
+      if(pt_node == NULL) {
+          printf("ls: cannot access '%s': No such file or directory\n",pathname);
+          return 0;
+      }
+     else if(pt_node->type==DNODE)
+     {
+       printf("ls: cannot access '%s: Not a directory\n",pathname);
+       return 0;
+     }
+  }
+    for(int i=0;i<4096;i++) {
+      if(pt_node->dirents[i]!=NULL) {
+        printf("%s ",pt_node->dirents[i]->name);
+      }
+    }
+
 
 }
 
