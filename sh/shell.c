@@ -58,7 +58,11 @@ int scat(const char *pathname) {
     return 0;
   }
   else {
-    for(int i=0;i<pt_node->size;i++)printf("%c",(const char)pt_node->content[i]);
+    char *output=(char *)malloc(sizeof(char)*4096);
+    memset(output,0,4096);
+    for(int i=0;i<pt_node->size;i++) {
+      output[i]=(char)pt_node->content[i];
+    }
     printf("\n");
   }
   return 0;
