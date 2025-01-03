@@ -8,3 +8,4 @@ int secho(const char *content);
 int swhich(const char *cmd);
 void init_shell();
 void close_shell();
+int doContainFile(const char *pathname);
